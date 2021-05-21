@@ -62,13 +62,7 @@ func (s *Service) CacheCryptoMap() error {
 		return fmt.Errorf("failt to cache crypto map: %v", err)
 	}
 
-	assetMap := make(map[string]CryptoItem)
-	for _, crypto := range items {
-		assetMap[crypto.Symbol] = crypto
-	}
-
-	for _, symbol := range s.cryptoList {
-		asset := assetMap[symbol]
+	for _, asset := range items {
 		s.cryptoMap.Store(asset.Symbol, asset)
 	}
 
